@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Provider as ReduxProvider } from 'react-redux'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-const App = () => {
-  return (
-    <View>
-      <Text>Hello World</Text>
-    </View>
-  )
-}
+import store from '@/store'
+import Routes from '@/routes'
+
+const App = () => (
+  <ReduxProvider store={store}>
+    <SafeAreaProvider>
+      <Routes />
+    </SafeAreaProvider>
+  </ReduxProvider>
+)
 
 export default App
