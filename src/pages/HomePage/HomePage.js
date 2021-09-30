@@ -1,15 +1,43 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useDispatch } from 'react-redux'
+import { View, Text, TouchableOpacity } from 'react-native'
 
-const HomePage = () => {
+import { applySystemBackground } from '@/components/templates/SystemBackground'
+import QuestionsCreator from '@/store/ducks/questions'
+
+const HomePage = ({ navigation }) => {
+  const dispatch = useDispatch()
+  const { getQuestions } = QuestionsCreator
+
+  console.log(navigation)
+
+  const searchQuestions = async () => {
+    doSearchQuestions().then(() => navigation.navigate('Quiz'))
+  }
+
+  const doSearchQuestions = () => {
+    return new Promise((resolve, reject) =>
+      dispatch(
+        getQuestions(
+          {
+            amount: 10,
+            difficulty: 'hard',
+            type: 'boolean',
+          },
+          resolve,
+          reject,
+        ),
+      ),
+    )
+  }
+
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Let's play :D</Text>
-      </View>
-    </SafeAreaView>
+    <View>
+      <TouchableOpacity onPress={searchQuestions}>
+        <Text>Let's play :D Oué</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
-export default HomePage
+export default applySystemBackground(HomePage)
