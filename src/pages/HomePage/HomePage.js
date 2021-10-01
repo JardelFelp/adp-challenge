@@ -1,42 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { View, Text, TouchableOpacity } from 'react-native'
 
-import { applySystemBackground } from '@/components/templates/SystemBackground'
+import Button from '@/components/atoms/Button'
 import QuestionsCreator from '@/store/ducks/questions'
+import { applySystemBackground } from '@/components/templates/SystemBackground'
+
+import { Container, Title, Subtitle } from './styles'
 
 const HomePage = ({ navigation }) => {
-  const dispatch = useDispatch()
-  const { getQuestions } = QuestionsCreator
+  const [loading, setLoading] = useState(false)
 
-  console.log(navigation)
+  const { getQuestions, resetAnsweredQuestion } = QuestionsCreator
+  const dispatch = useDispatch()
 
   const searchQuestions = async () => {
-    doSearchQuestions().then(() => navigation.navigate('Quiz'))
+    setLoading(true)
+
+    doSearchQuestions()
+      .then(() => {
+        dispatch(resetAnsweredQuestion())
+        navigation.navigate('Quiz')
+      })
+      .finally(() => setLoading(false))
   }
 
   const doSearchQuestions = () => {
     return new Promise((resolve, reject) =>
-      dispatch(
-        getQuestions(
-          {
-            amount: 10,
-            difficulty: 'hard',
-            type: 'boolean',
-          },
-          resolve,
-          reject,
-        ),
-      ),
+      dispatch(getQuestions({ difficulty: 'hard' }, resolve, reject)),
     )
   }
 
   return (
-    <View>
-      <TouchableOpacity onPress={searchQuestions}>
-        <Text>Let's play :D Oué</Text>
-      </TouchableOpacity>
-    </View>
+    <Container>
+      <Title>Welcome to the Trivia Challenge!</Title>
+
+      <Subtitle>
+        You will be presented with 10 True or False questions.
+      </Subtitle>
+
+      <Subtitle>Can you score 100%?</Subtitle>
+
+      <Button onPress={searchQuestions} loading={loading}>
+        Begin
+      </Button>
+    </Container>
   )
 }
 

@@ -1,24 +1,29 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
-
-import CloudsSVG from '@/assets/background/clouds.svg'
-import ParkSVG from '@/assets/background/park.svg'
-
-import { styles, BackgroundView, ContentView } from './styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const applySystemBackground = Component => {
-  const { width: screenWidth } = Dimensions.get('screen')
+import CloudsImage from '@/assets/background/clouds.png'
+import ParkImage from '@/assets/background/park.png'
 
+import {
+  BackgroundView,
+  ContentView,
+  CloudsImageBackground,
+  ParkImageBackground,
+} from './styles'
+
+export const applySystemBackground = (Component, showClouds = true) => {
   return props => (
     <BackgroundView>
-      <CloudsSVG style={styles.clouds} width={screenWidth - 60} />
+      {/* Background images */}
+      {showClouds && <CloudsImageBackground source={CloudsImage} />}
+      <ParkImageBackground source={ParkImage} />
+
+      {/* Content */}
       <SafeAreaView>
         <ContentView>
           <Component {...props} />
         </ContentView>
       </SafeAreaView>
-      <ParkSVG style={styles.park} width={screenWidth} />
     </BackgroundView>
   )
 }
