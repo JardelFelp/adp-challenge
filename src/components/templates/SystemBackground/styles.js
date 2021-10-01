@@ -13,7 +13,7 @@ export const BackgroundView = styled.View`
 export const ContentView = styled.View`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
   padding-bottom: 100px;
 `

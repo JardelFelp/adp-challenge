@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce'
 
 /* Initial State */
 export const INITIAL_STATE = {
-  questions: null,
+  questions: [],
   answeredQuestions: [],
   currentQuestionNumber: 0,
   error: null,

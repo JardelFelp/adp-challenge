@@ -4,17 +4,15 @@ import PropTypes from 'prop-types'
 import { ButtonWrapper, ButtonText, LoadingIndicator } from './styles'
 import { colors } from '@/styles/colors'
 
-const Button = ({ color, background, children, loading, ...props }) => {
-  return (
-    <ButtonWrapper background={background} disabled={loading} {...props}>
-      {loading && <LoadingIndicator color={color} />}
+const Button = ({ color, background, children, loading, ...props }) => (
+  <ButtonWrapper background={background} disabled={loading} {...props}>
+    {loading && <LoadingIndicator color={color} />}
 
-      <ButtonText color={color} loading={loading}>
-        {children}
-      </ButtonText>
-    </ButtonWrapper>
-  )
-}
+    <ButtonText color={color} loading={loading}>
+      {children}
+    </ButtonText>
+  </ButtonWrapper>
+)
 
 Button.propTypes = {
   background: PropTypes.string,

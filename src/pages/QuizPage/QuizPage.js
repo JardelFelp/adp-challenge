@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback } from 'react'
 import { connect } from 'react-redux'
+import { decode } from 'html-entities'
 import { bindActionCreators } from 'redux'
 
 import QuestionsCreator from '@/store/ducks/questions'
@@ -45,7 +46,7 @@ const QuizPage = ({
         return incrementQuestionNumber()
       }
       // Send to resume page
-      return navigation.navigate('Home')
+      return navigation.navigate('Resume')
     },
     [
       currentQuestion,
@@ -60,7 +61,7 @@ const QuizPage = ({
     <Container>
       <CircleCard>
         <CounterText>
-          {currentQuestionNumber + 1}/{questions?.length}
+          {currentQuestionNumber + 1} of {questions?.length}
         </CounterText>
       </CircleCard>
 
@@ -69,7 +70,7 @@ const QuizPage = ({
       </TriangleCard>
 
       <Card>
-        <Pharagraph>{currentQuestion?.question}</Pharagraph>
+        <Pharagraph>{decode(currentQuestion?.question)}</Pharagraph>
       </Card>
 
       <ButtonWrapper>
