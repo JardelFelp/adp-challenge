@@ -44,6 +44,11 @@ For best practices control we used eslint and prettier configuration files
 
 ## Prototype
 
+<img width="554" alt="Screen Shot 2021-10-01 at 03 28 47" width="300" src="https://user-images.githubusercontent.com/20867197/135575919-7b8c52a8-8a43-42f3-86a9-48ec5b7e3b98.png">
+<img width="554" alt="Screen Shot 2021-10-01 at 03 28 53" src="https://user-images.githubusercontent.com/20867197/135575926-5f4fe185-bd46-4fd3-8048-5bc511067694.png">
+<img width="554" alt="Screen Shot 2021-10-01 at 03 29 01" src="https://user-images.githubusercontent.com/20867197/135575938-109be1f4-8541-4a78-96b8-470e5f79b590.png">
+
+
 ### Links
 
 - **Atomic Design**: https://bradfrost.com/blog/post/atomic-web-design/
