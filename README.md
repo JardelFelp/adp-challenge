@@ -1,6 +1,4 @@
-# ADP Labs - Challenge
-
-The project was created with the intention of being a challenge for ADP Labs.
+# Trivial Challenge
 
 ## How run the project?
 
